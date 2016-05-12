@@ -1,0 +1,94 @@
+
+
+
+    def getFloatMatchups(self,Profilelist,nav_lev,outdir="./"):
+        '''
+        Dumps an image png file and a NetCDF file for each profile
+        The filenames refers to time and float wmo.
+        Both files contain matchups about chl,O2o,N3n,temperature, salinity
+
+
+        Matchups are provided at fixed depths: every 5 meters from 0 to 400m,
+        because in biofloats physical and biological variables do not have the same sampling.
+
+        Arguments:
+        * Profilelist * is provided by FloatSelector
+        * nav_lev * is the model level
+        * outdir * optional is the output location
+
+
+        The matchups are couples of values (Model,Ref)
+        obtained to a given selection in space and time,
+        to be used in statistics.
+
+
+        At the moment it can happen that a short model profile is extrapolated over a long float profile.
+        Then, a replication of matchups could occur.
+
+        Returns nothing
+        '''
+        from validation.online.profileplotter import figure_generator, ncwriter, add_metadata
+        zlevels_out=np.arange(0,401,5)
+        MODELVARLIST=['P_i','O2o','N3n','votemper','vosaline']
+        plotvarname = [r'Chl $[mg/m^3]$',r'Oxy $[mmol/m^3]$',r'Nitr $[mmol/m^3]$',r'Temp $[^\circ C]$','Sal']
+        read_adjusted = [True,False,False,False,False]
+        mapgraph = [3,4,5,1,2]
+
+        for p in Profilelist:
+ 
+            VARLIST = p._my_float.available_params.strip().rsplit(" ")
+            VARLIST.remove('PRES')
+
+
+            #density calculator on zlevels_out
+            model_varname = 'votemper'
+            ref_varname = self.reference_var(p, model_varname)
+
+            Pres, temp, Qc = p.read(ref_varname,read_adjusted[3])
+            Temp_out = np.interp(zlevels_out,Pres,temp).astype(np.float32)
+
+            model_varname = 'vosaline'
+            ref_varname = self.reference_var(p, model_varname)
+            Pres, sal, Qc = p.read(ref_varname,read_adjusted[4])
+            sal_out = np.interp(zlevels_out,sal,temp).astype(np.float32)
+#            density = sw.dens(sal_out,Temp_out,zlevels_out)
+            #end density calculator
+
+#            correction = [1,1000./density,1,1,1]
+
+ #           filename = outdir+"/"+Model_time.strftime('%Y%m%d') +"_"+p.name()
+            ncOUT, model_handlers, float_handlers =ncwriter(filename+".nc", zlevels_out,p)
+
+            fig, axs = figure_generator(p)
+            #pl.rc('text', usetex=True)
+
+            for i,model_varname in enumerate(MODELVARLIST):
+                ref_varname = self.reference_var(p, model_varname)
+                if ref_varname not in VARLIST: continue
+                ModelProfile = self.readModelProfile(Modelfile, model_varname, p.name())
+                seaPoints = ~np.isnan(ModelProfile)
+                Pres, Profile, Qc = p.read(ref_varname,read_adjusted[i])
+                if len(Pres) == 0:
+                    Pres, Profile, Qc = p.read(ref_varname,not read_adjusted[i])
+
+                print model_varname, len(Profile)
+#                model_on_common_grid=np.interp(zlevels_out,nav_lev[seaPoints],ModelProfile[seaPoints]).astype(np.float32)
+#                float_on_common_grid=np.interp(zlevels_out,Pres,Profile).astype(np.float32)
+#                float_on_common_grid = float_on_common_grid*correction[i]
+
+#                Matchup = matchup.matchup.ProfileMatchup(model_on_common_grid, float_on_common_grid, zlevels_out, Qc, p)
+
+#                model_handlers[i][:] = model_on_common_grid[:] #write on NC file
+#                float_handlers[i][:] = float_on_common_grid[:]
+
+
+                ax=axs[mapgraph[i]] #get subplot
+                fig, ax = Matchup.plot_subplot(plotvarname[i], fig, ax)
+
+            ncOUT.close()
+            pngfile = filename + ".png"
+            fig.savefig(pngfile)
+            pl.close(fig)
+#            add_metadata(pngfile, p)
+
+        return

@@ -1,0 +1,17 @@
+In [12]: len(tmp_All_Profiles)
+Out[12]: 201
+
+In [13]: tmp_All_Profiles[lim_3sigma]
+Out[13]: array([ 1.42937146])
+In [14]: nP
+Out[14]: 481
+
+
+
+In [14]: nP
+Out[14]: 481
+
+In [15]: npp
+Out[15]: 153
+
+

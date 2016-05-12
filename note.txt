@@ -1,0 +1,5 @@
+To plot beavior of single biofloats by dividing also by season, 
+1) I count all the profiles in that range of time
+2) I select the wmo name of the bio-float
+3) I divide the autumn-winter season and the spring summer season for the single bio-float
+4) I do the statistics (mean, std, ...... of CHLA, saline, temperature, nitrate and oxigen).

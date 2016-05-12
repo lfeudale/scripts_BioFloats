@@ -1,0 +1,203 @@
+/pico/home/userexternal/lfeudale/bit.sea/instruments/bio_float.py
+
+In [210]: from mhelpers.pgmean import PLGaussianMean
+
+In [211]: PLGaussianMean?
+
+In [212]: meanObj = PLGaussianMean(5,1.0)
+
+In [213]: meanObj.compute
+meanObj.compute
+
+In [213]: meanObj.compute?
+Type:        instancemethod
+String form: <bound method PLGaussianMean.compute of <mhelpers.pgmean.PLGaussianMean object at 0x7f9958d31910>>
+File:        /pico/home/userexternal/lfeudale/bit.sea/mhelpers/pgmean.py
+Definition:  meanObj.compute(values, pressure_values)
+Docstring:
+Performs the computation.
+
+Args:
+    - *values*: the array of values to smooth.
+    - *pressure_values*: the array of pressure values to be used on the
+      weights. MUST have the same length of values.
+
+In [214]: p.
+p.available_params  p.lon               p.name              p.time              
+p.lat               p.mean              p.read              
+
+In [214]: p.mean
+Out[214]: <mhelpers.pgmean.PLGaussianMean at 0x7f995f267350>
+
+In [215]: p.
+p.available_params  p.lon               p.name              p.time              
+p.lat               p.mean              p.read              
+
+In [215]: F.
+F.available_params  F.filename          F.lon               F.rarefy            F.read_very_raw
+F.cycle             F.from_file         F.plot              F.read              F.time
+F.default_mean      F.lat               F.profiles          F.read_raw          F.wmo
+
+In [215]: F._
+F._BioFloat__fillnan                       F.__init__
+F._BioFloat__merge_profile_with_adjusted   F.__module__
+F._BioFloat__merge_var_with_adjusted       F.__new__
+F._BioFloat__searchVariable_on_parameters  F.__reduce__
+F.__class__                                F.__reduce_ex__
+F.__delattr__                              F.__repr__
+F.__dict__                                 F.__setattr__
+F.__doc__                                  F.__sizeof__
+F.__eq__                                   F.__str__
+F.__format__                               F.__subclasshook__
+F.__getattribute__                         F.__weakref__
+F.__hash__                                 
+
+In [215]: p._
+p.__class__         p.__eq__            p.__init__          p.__reduce_ex__     p.__str__
+p.__delattr__       p.__format__        p.__module__        p.__repr__          p.__subclasshook__
+p.__dict__          p.__getattribute__  p.__new__           p.__setattr__       p.__weakref__
+p.__doc__           p.__hash__          p.__reduce__        p.__sizeof__        p._my_float
+
+In [215]: p
+%%perl      %%python2   %pastebin   %pfile      %pprint     %psearch    %pycat      pippo       pp
+%%prun      %%python3   %pdb        %pinfo      %precision  %psource    %pylab      pl          ppos
+%%pypy      %page       %pdef       %pinfo2     %profile    %pushd      p           pos         print
+%%python    %paste      %pdoc       %popd       %prun       %pwd        pass        pow         property
+
+In [215]: p
+%%perl      %%python2   %pastebin   %pfile      %pprint     %psearch    %pycat      pippo       pp
+%%prun      %%python3   %pdb        %pinfo      %precision  %psource    %pylab      pl          ppos
+%%pypy      %page       %pdef       %pinfo2     %profile    %pushd      p           pos         print
+%%python    %paste      %pdoc       %popd       %prun       %pwd        pass        pow         property
+
+In [215]: p.
+p.available_params  p.lon               p.name              p.time              
+p.lat               p.mean              p.read              
+
+In [215]: p._
+p.__class__         p.__eq__            p.__init__          p.__reduce_ex__     p.__str__
+p.__delattr__       p.__format__        p.__module__        p.__repr__          p.__subclasshook__
+p.__dict__          p.__getattribute__  p.__new__           p.__setattr__       p.__weakref__
+p.__doc__           p.__hash__          p.__reduce__        p.__sizeof__        p._my_float
+
+In [215]: p=Winter_list[1005]
+
+In [216]: p.mean
+Out[216]: <mhelpers.pgmean.PLGaussianMean at 0x7f995f267350>
+
+In [217]: p.mean.compute?
+Type:        instancemethod
+String form: <bound method PLGaussianMean.compute of <mhelpers.pgmean.PLGaussianMean object at 0x7f995f267350>>
+File:        /pico/home/userexternal/lfeudale/bit.sea/mhelpers/pgmean.py
+Definition:  p.mean.compute(values, pressure_values)
+Docstring:
+Performs the computation.
+
+Args:
+    - *values*: the array of values to smooth.
+    - *pressure_values*: the array of pressure values to be used on the
+      weights. MUST have the same length of values.
+
+In [218]: p.
+p.available_params  p.lon               p.name              p.time              
+p.lat               p.mean              p.read              
+
+In [218]: p._my_float.
+p._my_float.available_params  p._my_float.lat               p._my_float.read
+p._my_float.cycle             p._my_float.lon               p._my_float.read_raw
+p._my_float.default_mean      p._my_float.plot              p._my_float.read_very_raw
+p._my_float.filename          p._my_float.profiles          p._my_float.time
+p._my_float.from_file         p._my_float.rarefy            p._my_float.wmo
+
+In [218]: p._my_float.
+p._my_float.available_params  p._my_float.lat               p._my_float.read
+p._my_float.cycle             p._my_float.lon               p._my_float.read_raw
+p._my_float.default_mean      p._my_float.plot              p._my_float.read_very_raw
+p._my_float.filename          p._my_float.profiles          p._my_float.time
+p._my_float.from_file         p._my_float.rarefy            p._my_float.wmo
+
+In [218]: p._my_float.r
+p._my_float.rarefy         p._my_float.read           p._my_float.read_raw       p._my_float.read_very_raw
+
+In [218]: p.read?
+Type:        instancemethod
+String form: <bound method BioFloatProfile.read of <instruments.bio_float.BioFloatProfile object at 0x7f9959193e10>>
+File:        /pico/home/userexternal/lfeudale/bit.sea/instruments/bio_float.py
+Definition:  p.read(var, read_adjusted)
+Docstring:
+Reads profile data from file. Wrapper for BioFloat.read()
+
+Takes var as string
+      read_adjusted as logical
+Returns 3 numpy arrays: Pres, Profile, Qc 
+
+In [219]: a,b,c=p.read('TEMP',True)
+
+In [220]: b
+Out[220]: array([], dtype=float32)
+
+In [221]: a,b,c=p.read('TEMP',False)
+
+In [222]: b
+Out[222]: 
+array([ 21.53800011,  21.53818532,  21.53855194,  21.5391462 ,
+        21.53968609,  21.54023158,  21.54059955,  21.54092409,
+        21.54119018,  21.54164618,  21.54185379,  21.54199982,        13.77509842,  13.77401279,  13.77324602,  13.77244641])
+
+In [223]: a,b,c=p._my_float.read('TEMP',read_adjusted=False)
+
+In [224]: a,b,c=p._my_float.read('TEMP',mean=mea,read_adjusted=False)
+mean=    meanObj  
+
+In [224]: a,b,c=p._my_float.read('TEMP',mean=meanObj ,read_adjusted=False)
+
+In [225]: b
+Out[225]: 
+array([ 21.53800011,  21.53818532,  21.53855194,  21.5391462 ,
+        21.53968609,  21.54023158,  21.54059955,  21.54092409,
+
+        13.77667958,  13.77615264,  13.77600002,  13.77569573,
+        13.77509842,  13.77401279,  13.77324602,  13.77244641])
+
+In [226]: a,b,c=p._my_float.read('TEMP',read_adjusted=False)
+
+In [227]: b
+Out[227]: 
+array([ 21.53800011,  21.53800011,  21.53800011,  21.53899956,
+        21.54000092,  21.54100037,  21.54000092,  21.54100037,
+
+        13.77600002,  13.77600002,  13.77600002,  13.77600002,
+        13.77600002,  13.77400017,  13.77299976,  13.77099991], dtype=float32)
+
+In [228]: a,b,c=p._my_float.read('TEMP',mean=meanObj ,read_adjusted=False)
+
+In [229]: meanObj7 = PLGaussianMean(7,1.0)
+
+In [230]: a,b,c=p._my_float.read('TEMP',meanObj7 , False)
+
+In [231]: a,b,c,d=p._my_float.read_very_raw('TEMP')
+
+In [232]: len(a)
+Out[232]: 445
+
+In [234]: a,b,c=p._my_float.read_raw('TEMP')
+
+In [235]: a,b,c=p._my_float.read_raw('TEMP',read_adjusted=False)
+
+In [236]: len(a)
+Out[236]: 321
+
+In [237]: a,b,c=p._my_float.read('TEMP',read_adjusted=False)
+
+In [238]: len(a)
+Out[238]: 176
+
+In [239]: a,b,c=p._my_float.read('TEMP',mean=meanread_adjusted=False)
+mean=     meanObj   meanObj7  
+
+In [239]: a,b,c=p._my_float.read('TEMP',mean=meanOread_adjusted=False)
+meanObj   meanObj7  
+
+In [239]: a,b,c=p._my_float.read('TEMP',mean=meanObj7, read_adjusted=False)
+
+PLGaussianMean?

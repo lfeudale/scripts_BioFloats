@@ -1,0 +1,42 @@
+[1;31mType:            [0mtype
+[1;31mString form:     [0m<class 'mhelpers.pgmean.PLGaussianMean'>
+[1;31mFile:            [0m/pico/home/userexternal/lfeudale/bit.sea/mhelpers/pgmean.py
+[1;31mInit definition: [0m[0mPLGaussianMean[0m[1;33m([0m[0mself[0m[1;33m,[0m [0minterval[0m[1;33m,[0m [0msigma[0m[1;33m=[0m[1;36m1.0[0m[1;33m)[0m[1;33m[0m[0m
+[1;31mDocstring:[0m
+Logarithmic-like smoothing helper object.
+
+This class smooths the values according to the following algorithm:
+
+1. Build a distance vector as long as the current interval based on
+   pressure_values and centered on the current sample.
+2. Normalize the distances::
+
+    d[i] = d[i] / d_max
+
+   where d_max is the maximum distance.
+3. Compute the weights based on the normalized distances::
+
+    weights[i] = exp(-0.5*(d[i] / sigma)**2)
+
+4. Compute the output::
+
+        output[i] = sum((values[(i - interval // 2):(i + (interval // 2 ) + 1)] * weights)) / sum(weights)
+
+Basically instead of weighting the weights it takes different points on the
+Gauss bell curve according to the distance from the current sample.
+[1;31mInit docstring:[0m
+GaussianMean class constructor.
+
+Args:
+    - *interval*: the amount of nearby points that the filter has to
+      consider for each point of the values' array including the point
+      itself. The interval is centered on the current point and an even
+      interval will be promoted to the next odd value (e.g. 4 will
+      become 5 so two points before and two points after plus the
+      current point will be considered).
+    - *sigma*: the sigma parameter for the Gauss bell curve.
+      Defaults to 1.0 .
+
+Raises:
+    - *ValueError* if interval or sigma are negative or if they cannot
+      be converted to a number.
